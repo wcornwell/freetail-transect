@@ -4,7 +4,7 @@ An interactive map of where and when the White-striped Free-tailed Bat
 (*Austronomus australis*) is heard at dusk across Australian Acoustic
 Observatory sites, by season.
 
-**Map:** https://wcornwell.github.io/freetail-transect/
+**Map:** https://willcornwell.org/freetail-transect/
 
 Presence is the share of sampled dusks (first 1.5 h after sunset) on which a
 signal-processing detector found the bat and an A2O-trained Perch classifier
