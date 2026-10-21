@@ -494,7 +494,7 @@ for (let i = 0; i < 120; i++) { rampCanvas.fillStyle = color(i / 119); rampCanva
 
 const nScanned = scanned.length;
 document.getElementById("status").innerHTML =
-  `${nScanned} of ${sites.length} sites scanned · <b>${DATA.source === "sp" ? "detector only, not yet Perch-confirmed" : "Perch-confirmed"}${DATA.head ? " (" + DATA.head + ")" : ""}</b>${DATA.provisional ? " · <b>provisional: detector not yet frozen</b>" : ""} · ${DATA.generated}`;
+  `${nScanned} of ${sites.length} sites scanned · <b>${DATA.source === "sp" ? "detector only, not yet Perch-confirmed" : "Perch-confirmed"}${DATA.head ? " (" + DATA.head + ")" : ""}</b>${DATA.provisional ? " · <b>detector frozen 2026-10-21 · score-to-probability calibration in progress</b>" : ""} · ${DATA.generated}`;
 document.getElementById("measure").textContent = "This build: " + DATA.measure;
 if (DATA.excluded && DATA.excluded.sites.length) {
   const ex = DATA.excluded, el = document.getElementById("excluded");
