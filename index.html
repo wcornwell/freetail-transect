@@ -93,8 +93,7 @@ table { border-collapse: collapse; width: 100%; font-size: 12.5px; margin-top: 1
 th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
 th { color: var(--muted); font-weight: 500; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
 td.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.about { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 28px; }
-@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); } }
+.about { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px 28px; }
 .about h3 { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
   font-weight: 600; margin: 0 0 6px; }
 .about p, .about li { font-size: 12.5px; color: var(--ink2); margin: 0 0 6px; max-width: 70ch; }
@@ -175,24 +174,6 @@ td.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabula
   <section class="card" aria-labelledby="about-h">
     <h2 id="about-h" style="margin-bottom:12px">About this map</h2>
     <div class="about">
-      <div>
-        <h3>Method</h3>
-        <ul>
-          <li>Audio is the first 1.5 h after sunset at one recorder per A2O site, sampled one night
-            a week (every night at Fowlers Gap and, more densely, at six south-eastern sites), all
-            years pooled.</li>
-          <li>Most A2O audio is 22.05 kHz, so only the bottom of this bat's ~11&ndash;15 kHz call, a
-            ~10 kHz tail, is recorded. A signal-processing pulse detector finds it; an A2O-trained
-            Perch classifier confirms the detector's candidate windows.</li>
-          <li id="measure"></li>
-          <li>A fortnight with no audio is shown as no data, never as absence. Shares resting on
-            few dusks are noisy; the number sampled is in every tooltip.</li>
-          <li>Other free-tailed bats in northern Australia call in the same band. The validation
-            found northern detections as reliable as southern ones, but a listener cannot always
-            tell these species apart, so northern detections remain the least certain.</li>
-          <li id="excluded" hidden></li>
-        </ul>
-      </div>
       <div>
         <h3>Data and credit</h3>
         <p>Recordings from the <a href="https://acousticobservatory.org/" rel="noopener">Australian
@@ -499,15 +480,7 @@ for (let i = 0; i < 120; i++) { rampCanvas.fillStyle = color(i / 119); rampCanva
 
 const nScanned = scanned.length;
 document.getElementById("status").innerHTML =
-  `${nScanned} of ${sites.length} sites scanned · <b>${DATA.source === "sp" ? "detector only, not yet Perch-confirmed" : "Perch-confirmed"}${DATA.head ? " (" + DATA.head + ")" : ""}</b>${DATA.provisional ? " · <b>provisional: calibrated by one listener; a second listener's check is pending</b>" : ""} · ${DATA.generated}`;
-document.getElementById("measure").textContent = "This build: " + DATA.measure;
-if (DATA.excluded && DATA.excluded.sites.length) {
-  const ex = DATA.excluded, el = document.getElementById("excluded");
-  el.textContent = `Not shown: sites with fewer than ${ex.min_dusks} sampled dusks, or fewer than ` +
-    `${ex.min_per_season} in any season (winter May-Aug, summer Nov-Feb, or the months between) -- ` +
-    ex.sites.map(s => `${s.region} (${s.nights}; ${s.n_winter}/${s.n_shoulder}/${s.n_summer})`).join(", ") + ".";
-  el.hidden = false;
-}
+  `${nScanned} of ${sites.length} sites scanned · ${DATA.generated}`;
 drawTable(); render();
 </script>
 </body>
